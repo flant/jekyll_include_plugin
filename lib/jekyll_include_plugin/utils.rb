@@ -46,18 +46,17 @@ module JekyllIncludePlugin
     end
 
     def remove_all_snippets(text)
-      snippet_content = ""
+      result_text = ""
       text.each_line do |line|
         if %r!\[<(end)?snippet\s+[^>]+>\]!.match?(line)
           debug("Skipping line with non-relevant (end)snippet: #{line}")
           next
         else
-          snippet_content += line
+          result_text += line
         end
       end
-      abort("Snippet '#{snippet_name}' appears to be empty. Fix and retry.") if snippet_content.empty?
 
-      return snippet_content
+      return result_text
     end
 
     def render_comments(text, lang)
