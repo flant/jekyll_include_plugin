@@ -42,7 +42,7 @@ module JekyllIncludePlugin
       abort("End of the snippet '#{snippet_name}' has not been found.") unless snippet_end_found
       abort("Snippet '#{snippet_name}' appears to be empty. Fix and retry.") if snippet_content.empty?
 
-      return snippet_content
+      return "...\n#{snippet_content}"
     end
 
     def remove_all_snippets(text)
