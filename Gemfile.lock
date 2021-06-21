@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll_include_plugin (0.1.0)
+    jekyll_include_plugin (1.0.0)
       jekyll (~> 3.9.1)
       liquid (~> 4.0.3)
 
