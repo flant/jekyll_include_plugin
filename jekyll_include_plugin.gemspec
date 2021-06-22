@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ilya Lesikov"]
   spec.email         = ["ilya@lesikov.com"]
 
-  spec.summary       = "Include files or file samples into Markdown, allows for multilang comments in included files."
+  spec.summary       = "Plugin for including contents of local/remote plain text files (or parts of them) into your pages. Allows for multilang comments in the included files."
   spec.homepage      = "https://github.com/flant/jekyll_include_plugin"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.6.3"

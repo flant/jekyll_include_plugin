@@ -1,6 +1,6 @@
 # Jekyll Include Plugin
 
-Include local/remote file contents (or part of it) into your pages.
+Include contents of local/remote plain text files (or parts of them) into your pages.
 Allows multilang comments in the included files, which language will be used depends on `{{ page.lang }}`.
 
 ## Usage
