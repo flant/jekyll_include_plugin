@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/jekyll_remote_plantuml_plugin.svg)](https://badge.fury.io/rb/jekyll_remote_plantuml_plugin)
+[![Gem Version](https://badge.fury.io/rb/jekyll_include_plugin.svg)](https://badge.fury.io/rb/jekyll_include_plugin)
 
 # Jekyll Include Plugin
 
