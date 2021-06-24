@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/jekyll_remote_plantuml_plugin.svg)](https://badge.fury.io/rb/jekyll_remote_plantuml_plugin)
+
 # Jekyll Include Plugin
 
 Include contents of local/remote plain text files (or parts of them) into your pages.
