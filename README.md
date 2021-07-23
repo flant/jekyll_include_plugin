@@ -8,24 +8,24 @@ Allows multilang comments in the included files, which language will be used dep
 Basic usage as follows:
 
 ```jinja
-jekyllroot/pages/foo.md:
+/jekyllroot/pages/foo.md:
 -----------------------
 lang: en
 -----------------------
-{% include_file "this_dir_is_inside_jekyll_root_dir/foo/Dockerfile" snippet="system_deps" syntax="Dockerfile" %}
+{% include_file "foo/Dockerfile" snippet="system_deps" syntax="Dockerfile" %}
 ```
 
 ```Dockerfile
-this_dir_is_inside_jekyll_root_dir/foo/Dockerfile:
+/jekyllroot/foo/Dockerfile:
 --------------------------------------------------------
 FROM ruby
 
-# [<snippet install_system_deps>]
+# [<snippet system_deps>]
 # [<en>] Install system dependencies
 # [<en>] (multiline possible too)
 # [<ru>] Установка системных зависимостей
 RUN apt update && apt install curl -y
-# [<endsnippet install_system_deps>]
+# [<endsnippet system_deps>]
 ```
 
 Result:
@@ -35,19 +35,19 @@ Result:
 RUN apt update && apt install curl -y
 ```
 
-Include whole file:
+Include a local file (path is relative to Jekyll root):
 ```jinja
 {% include_file "Dockerfile" %}
 ```
 
-Include remote file:
+Include a remote file (only absolute urls):
 ```jinja
 {% include_file "https://raw.githubusercontent.com/werf/werf-guides/master/examples/rails/010_build/Dockerfile" %}
 ```
 
 Dynamic parameters:
 ```jinja
-{% include_file "{{ $templatingAllowedHere }}" snippet="{{ $hereToo }}" %}
+{% include_file "{{ $templatingAllowedHere }}/Dockerfile" snippet="{{ $hereToo }}" %}
 ```
 
 ## Installation
