@@ -35,14 +35,24 @@ Result:
 RUN apt update && apt install curl -y
 ```
 
-Include a local file (path is relative to Jekyll root):
+Include the local file (path is relative to Jekyll root):
 ```jinja
 {% include_file "Dockerfile" %}
 ```
 
-Include a remote file (only absolute urls):
+Include the remote file (only absolute urls):
 ```jinja
 {% include_file "https://raw.githubusercontent.com/werf/werf-guides/master/examples/rails/010_build/Dockerfile" %}
+```
+
+Include part of the file (the part should be enclosed in `[<snippet snippetname>]` and `[<endsnippet snippetname>]`):
+```jinja
+{% include_file "Dockerfile" snippet="snippetname" %}
+```
+
+Include the file and wrap the result in `` ```dockerfile `` and `` ``` ``:
+```jinja
+{% include_file "Dockerfile" syntax="dockerfile" %}
 ```
 
 Dynamic parameters:
