@@ -92,7 +92,7 @@ module JekyllIncludePlugin
     def get_remote_file_contents()
       begin
         debug("Getting contents of specified remote file: #{@params["abs_file_url"]}")
-        return open(@params["abs_file_url"]).read
+        return URI.open(@params["abs_file_url"]).read
       rescue OpenURI::HTTPError => e
         abort("Can't get the contents of specified remote file '#{@params["abs_file_url"]}': #{e.message}")
       end
