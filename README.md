@@ -60,6 +60,19 @@ Dynamic parameters:
 {% include_file "{{ $templatingAllowedHere }}/Dockerfile" snippet="{{ $hereToo }}" %}
 ```
 
+## Plugin options in `_config.yml`
+
+Default options:
+```yml
+jekyll_include_plugin:
+  snippet_prefix: '...'
+```
+
+### `snippet_prefix`
+Type: `string` Default: `...`
+
+Prepends the prefix at the end of included snippet to differentiate whole file includes vs partial file includes (snippet)  
+
 ## Installation
 
 Add this line to your application's Gemfile:
