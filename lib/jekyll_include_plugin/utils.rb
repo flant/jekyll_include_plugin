@@ -16,7 +16,7 @@ module JekyllIncludePlugin
   module TextUtils
     include Utils
 
-    def pick_snippet(text, config, snippet_name)
+    def pick_snippet(text, snippet_prefix, snippet_name)
       snippet_content = ""
       snippet_start_found = false
       snippet_end_found = false
@@ -41,8 +41,6 @@ module JekyllIncludePlugin
       abort("Snippet '#{snippet_name}' has not been found.") unless snippet_start_found
       abort("End of the snippet '#{snippet_name}' has not been found.") unless snippet_end_found
       abort("Snippet '#{snippet_name}' appears to be empty. Fix and retry.") if snippet_content.empty?
-
-      snippet_prefix = config['snippet_prefix']
 
       return snippet_content if snippet_prefix.empty?
 

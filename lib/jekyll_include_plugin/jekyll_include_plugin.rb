@@ -21,7 +21,7 @@ module JekyllIncludePlugin
       file_contents = get_raw_file_contents(context)
 
       if @params["snippet"]
-        file_contents = pick_snippet(file_contents, @config, @params["snippet"])
+        file_contents = pick_snippet(file_contents, @config['snippet_prefix'], @params["snippet"])
       else
         file_contents = remove_all_snippets(file_contents)
       end
