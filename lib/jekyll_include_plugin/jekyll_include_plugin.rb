@@ -10,16 +10,18 @@ module JekyllIncludePlugin
     def initialize(tag_name, raw_markup, tokens)
       super
       @raw_markup = raw_markup
+      @config = {}
       @params = {}
     end
 
     def render(context)
+      read_config(context)
       parse_params(context)
 
       file_contents = get_raw_file_contents(context)
 
       if @params["snippet"]
-        file_contents = pick_snippet(file_contents, @params["snippet"])
+        file_contents = pick_snippet(file_contents, @config['snippet_prefix'], @params["snippet"])
       else
         file_contents = remove_all_snippets(file_contents)
       end
@@ -33,6 +35,13 @@ module JekyllIncludePlugin
     end
 
     private
+
+    def read_config(context)
+      site = context.registers[:site]
+      plugin_config = site.config["jekyll_include_plugin"] || {}
+
+      @config["snippet_prefix"] = plugin_config['snippet_prefix'] || '...'
+    end
 
     def parse_params(context)
       rendered_markup = Liquid::Template
