@@ -26,6 +26,7 @@ module JekyllIncludePlugin
         file_contents = remove_all_snippets(file_contents)
       end
 
+      file_contents = remove_ignored_lines(file_contents)
       file_contents = remove_excessive_newlines(file_contents)
       file_contents = remove_excessive_indentation(file_contents)
       file_contents = render_comments(file_contents, context.registers[:page]["lang"])

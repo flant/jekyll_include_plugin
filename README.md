@@ -60,6 +60,37 @@ Dynamic parameters:
 {% include_file "{{ $templatingAllowedHere }}/Dockerfile" snippet="{{ $hereToo }}" %}
 ```
 
+## Ignore a part of an included content
+
+The usage:
+```jsx
+const template = () => {
+  return (
+    // [<snippet example>]
+    <Provider
+      // [<ignore>]
+      propToIgnore={propToIgnore}
+      // [<endignore>]
+      component={() => <div>Data is loading...</div>}
+      errorComponent={({ message }) => <div>There was an error: {message}</div>}
+    >
+      ...
+    </Provider>
+    // [<endsnippet example>]
+  );
+};
+```
+
+The result:
+```jsx
+  <Provider
+    component={() => <div>Data is loading...</div>}
+    errorComponent={({ message }) => <div>There was an error: {message}</div>}
+  >
+    ...
+  </Provider>
+```
+
 ## Plugin options in `_config.yml`
 
 Default options:

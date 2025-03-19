@@ -48,6 +48,21 @@ module JekyllIncludePlugin
       return "#{first_line_indent}#{snippet_prefix}\n#{snippet_content}"
     end
 
+    def remove_ignored_lines(text)
+      ignoring = false
+      text.each_line.reject do |line|
+        if line =~ /^\s*\/\/\s*\[<ignore>\]/
+          ignoring = true
+          true
+        elsif line =~ /^\s*\/\/\s*\[<endignore>\]/
+          ignoring = false
+          true
+        else
+          ignoring
+        end
+      end.join
+    end
+
     def remove_all_snippets(text)
       result_text = ""
       text.each_line do |line|
