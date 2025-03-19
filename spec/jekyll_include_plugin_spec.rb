@@ -19,7 +19,7 @@ RSpec.describe JekyllIncludePlugin do
     arr
   end
 
-  let(:raw_markup) { 'dummy.md snippet="imports"' }
+  let(:raw_markup) { 'dummy.md snippet="example"' }
   let(:tag) do
     JekyllIncludePlugin::IncludeFileTag.send(:new, "include_file", raw_markup, dummy_tokens)
   end
@@ -33,10 +33,10 @@ RSpec.describe JekyllIncludePlugin do
       let(:text) do
         <<~TEXT
           Some intro text
-          [<snippet imports>]
+          [<snippet example>]
           line1
           line2
-          [<endsnippet imports>]
+          [<endsnippet example>]
           Some other text
         TEXT
       end
@@ -59,7 +59,7 @@ RSpec.describe JekyllIncludePlugin do
           <<~TEXT
             Some intro text
             line1
-            [<endsnippet imports>]
+            [<endsnippet example>]
             Some other text
           TEXT
         end
@@ -74,7 +74,7 @@ RSpec.describe JekyllIncludePlugin do
         let(:text) do
           <<~TEXT
             Some intro text
-            [<snippet imports>]
+            [<snippet example>]
             line1
             line2
             Some other text
@@ -90,8 +90,8 @@ RSpec.describe JekyllIncludePlugin do
       context "when snippet content is empty" do
         let(:text) do
           <<~TEXT
-            [<snippet imports>]
-            [<endsnippet imports>]
+            [<snippet example>]
+            [<endsnippet example>]
           TEXT
         end
 
@@ -104,11 +104,11 @@ RSpec.describe JekyllIncludePlugin do
       context "when the snippet appears twice" do
         let(:text) do
           <<~TEXT
-            [<snippet imports>]
+            [<snippet example>]
             line1
-            [<snippet imports>]
+            [<snippet example>]
             line2
-            [<endsnippet imports>]
+            [<endsnippet example>]
           TEXT
         end
 
@@ -130,10 +130,10 @@ RSpec.describe JekyllIncludePlugin do
       let(:text) do
         <<~TEXT
           Some intro text
-          [<snippet imports>]
+          [<snippet example>]
           line1
           line2
-          [<endsnippet imports>]
+          [<endsnippet example>]
           Some other text
         TEXT
       end
@@ -168,18 +168,21 @@ RSpec.describe JekyllIncludePlugin do
       let(:text) do
         <<~TEXT
           line before
+          // [<snippet example>]
+          line 1
           // [<ignore>]
           line to ignore 1
           line to ignore 2
           // [<endignore>]
+          line 2
+          // [<endsnippet example>]
           line after
         TEXT
       end
 
       it "removes the ignore markers and all lines between them" do
         allow(tag).to receive(:get_raw_file_contents).and_return(text)
-        allow(tag).to receive(:pick_snippet).with(text, "...", "imports").and_return(text)
-        expect(tag.render(dummy_context)).to eq("line before\nline after")
+        expect(tag.render(dummy_context)).to eq("...\nline 1\nline 2")
       end
     end
   end
